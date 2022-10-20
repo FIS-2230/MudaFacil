@@ -79,6 +79,8 @@ public class InterfazAgregarArticuloCliente {
         this.agregarArticulosClienteTablaLargo.setCellValueFactory(new PropertyValueFactory("largo"));
         this.agregarArticulosClienteTablaPeso.setCellValueFactory(new PropertyValueFactory("peso"));
 
+
+
     }
 
     @FXML
