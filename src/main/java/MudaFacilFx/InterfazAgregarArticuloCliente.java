@@ -1,5 +1,7 @@
 package MudaFacilFx;
 
+import Control.ControllerDB;
+import MudaFacilFx.InterfazCrearMudanzaCliente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Entity.Articulo;
@@ -79,8 +82,6 @@ public class InterfazAgregarArticuloCliente {
         this.agregarArticulosClienteTablaLargo.setCellValueFactory(new PropertyValueFactory("largo"));
         this.agregarArticulosClienteTablaPeso.setCellValueFactory(new PropertyValueFactory("peso"));
 
-
-
     }
 
     @FXML
@@ -108,8 +109,9 @@ public class InterfazAgregarArticuloCliente {
     }
 
     @FXML
-    void botonAgregar(ActionEvent event) {
+    void botonAgregar(ActionEvent event) throws SQLException {
 
+        ControllerDB ControlDB = new ControllerDB();
 
         String nombre = agregarArticulosClienteNombre.getText();
         int largo = Integer.parseInt(agregarArticulosClienteLargo.getText());
@@ -117,7 +119,12 @@ public class InterfazAgregarArticuloCliente {
         int alto = Integer.parseInt(agregarArticulosClienteAlto.getText());
         int peso = Integer.parseInt(agregarArticulosClientePeso.getText());
 
-        //ControllerDB.agregarArticuloMudanza(nombre,largo,ancho,alto,peso);
+        InterfazCrearMudanzaCliente inter = new InterfazCrearMudanzaCliente();
+        int codMud = InterfazCrearMudanzaCliente.cmudanza;
+
+        System.out.println("Mandamos a la base");
+
+        ControlDB.agregarArticuloMudanza(nombre,largo,ancho,alto,peso, codMud);
         Articulo aux= new Articulo(nombre,largo,ancho,alto,peso);
        // int volumen= largo*ancho*alto;
 

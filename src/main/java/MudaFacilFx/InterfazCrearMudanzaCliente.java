@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 
 public class InterfazCrearMudanzaCliente implements Initializable {
 
+    public static int cmudanza;
+
     @FXML
     private TextField crearMudanzaClienteDirLlegada;
 
@@ -93,6 +95,7 @@ public class InterfazCrearMudanzaCliente implements Initializable {
                 int ID = Integer.parseInt(id);
                 Random random = new Random();
                 int x = random.nextInt(1000)+1;
+                cmudanza = x;
 
                 ControlDB.agregarMudanza(x,ID,Dpartida,DLlegada,Fecha,HoraFinal);
 

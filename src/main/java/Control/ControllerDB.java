@@ -187,35 +187,44 @@ public class ControllerDB {
         }
 
         PreparedStatement Datos = test_conexion.prepareStatement("insert into MUDANZA values (?,?,?,?,?,?,?,?,?,?)");
-        System.out.println("Ya hizo el Statement");
 
         Datos.setString(1,Identificador);
-        System.out.println("x1");
         Datos.setString(2, Perso);
-        System.out.println("x2");
         Datos.setString(3, String.valueOf(x));
-        System.out.println("x3");
         Datos.setString(4, String.valueOf(x));
-        System.out.println("x4");
         Datos.setString(5, String.valueOf(x));
-        System.out.println("x5");
         Datos.setString(6,DPartida);
-        System.out.println("x6");
         Datos.setString(7,DLlegada);
-        System.out.println("x7");
         Datos.setString(8,Fecha);
-        System.out.println("x8");
         Datos.setString(9,Hora);
-        System.out.println("x9");
         Datos.setString(10, String.valueOf(x));
-        System.out.println("x10");
         Datos.executeUpdate();
-        System.out.println("x11");
+    }
+
+        public void agregarArticuloMudanza(String nombreArticulo, int largo, int ancho, int alto, int peso, int ID) throws SQLException {
+
+            System.out.println("Datos: "+ nombreArticulo + largo + ancho + alto + peso + ID);
+
+            try {
+                Class.forName(driver);
+                test_conexion = DriverManager.getConnection(url, user, password);
+                if (test_conexion != null) {
+                    System.out.println("Conexion realizada con exito SUBIR DATOS");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            PreparedStatement Datos = test_conexion.prepareStatement("insert into ARTICULOSMUDANZA values (?,?,?,?,?,?)");
+
+            Datos.setString(1,nombreArticulo);
+            Datos.setString(2, String.valueOf(largo));
+            Datos.setString(3, String.valueOf(ancho));
+            Datos.setString(4, String.valueOf(alto));
+            Datos.setString(5, String.valueOf(peso));
+            Datos.setString(6, String.valueOf(ID));
+            Datos.executeUpdate();
 
     }
 
-    /*public void agregarArticuloMudanza(String nombreArticulo,int largo, int ancho, int alto,int peso){
-
-    }
-*/
 }
